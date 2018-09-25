@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as jspdf from 'jspdf';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+
+  downloadPDF() {
+    const doc = new jspdf();
+    doc.text("first line", 10, 20);
+    doc.save('test.pdf');
+  }
 }
