@@ -1,0 +1,22 @@
+
+<h1>Login</h1>
+<div class="overlay" [style.display]="(spinnerDiv == 'show') ?   'inherit':'none'">
+  <img class="spinner" src="../spinner/7TwJ.gif" alt="Loading" />
+</div>
+
+<span style="color:red">{{error}}</span>
+<br />
+<fieldset id="one">
+  <legend>Login Details Form</legend>
+  <table>
+
+    <tbody>
+      <tr><td>User Name:</td><td><input [(ngModel)]=userName /></td></tr>
+      <tr><td>Password:</td><td><input type="password" [(ngModel)]=passWord /></td></tr>
+
+    </tbody>
+  </table>
+  <button type="button" (click)="OnLogin()">Submit Details</button>
+</fieldset>
+
+

@@ -1,0 +1,74 @@
+
+<h1>Profile Details</h1>
+<div class="overlay" [style.display]="(spinnerDiv == 'show') ?   'inherit':'none'">
+  <img class="spinner" src="../spinner/0_cWpsf9D3g346Va20.gif" alt="Loading" />
+</div>
+<span style="color:red">{{empCreateError}}</span>
+<div [style.display]="(profilepage == 'profileList') ?   'inherit':'none'" #pdfDiv>
+  <table id="profiletab">
+    <thead>
+      <tr>
+        <th style="display:none">Employee ID:</th>
+        <th style="display:none">Experience ID:</th>
+        <th>Previous Company Name</th>
+        <th>Date of Joining</th>
+        <th>Date of Resignation</th>
+        <th>Remarks</th>
+        <th>Files</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let profile of foundProfileDetails;let i=index" (click)="onProfileSelect(profile.expid)">
+        <td style="display:none">{{profile.empid}}</td>
+        <td style="text-align:center;display:none"><a (mouseover)="hover=true" (mouseleave)="hover=false">{{profile.expid}}</a></td>
+        <td>{{profile.PrevCmpName}}</td>
+        <td>{{profile.DOJ | date:'dd-MMM-yyyy'}}</td>
+        <td>{{profile.DOR | date:'dd-MMM-yyyy'}}</td>
+        <td>{{profile.PrevCmpRemarks}}</td>
+        <td>{{profile.filePath}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="downloadToPDF()">Export To PDF</button>
+</div>
+<div [style.display]="(profilepage == 'profileCreate') ?   'inherit':'none'">
+  <fieldset id="one">
+    <legend>IT Experience of {{profileDetail.PrevCmpName}}</legend>
+    <table>
+
+      <tbody>
+        <tr><td>Employee ID:</td><td>{{profileDetail.empid}}</td></tr>
+        <tr><td>Experience ID:</td><td>{{profileDetail.expid}}</td></tr>
+        <tr><td>Previous Company Name:</td><td><input [(ngModel)]=profileDetail.PrevCmpName /></td></tr>
+        <tr>
+          <td>Date of Joining:</td>
+          <td>
+            <!--<my-date-picker [options]="myDatePickerOptions"
+                            [(ngModel)]=profileDetail.DOJ required></my-date-picker>-->
+
+          </td>
+        </tr>
+        <tr>
+          <td>Date of Resignation:</td>
+          <td>
+            <!--<my-date-picker [options]="myDatePickerOptions"
+                            [(ngModel)]=profileDetail.DOR required></my-date-picker>-->
+
+          </td>
+        </tr>
+        <tr><td>Remarks:</td><td><textarea [(ngModel)]=profileDetail.PrevCmpRemarks rows="5" cols="30"></textarea></td></tr>
+        <tr><td>Files:</td><td><input [(ngModel)]=profileDetail.selectedFile type="file" (change)="onProfileFileSelected($event)" #fileUploadButton /></td></tr>
+
+      </tbody>
+    </table>
+  </fieldset>
+
+
+  <!--<button type="button" (click)="fileUploadButton.click()">Pick a file 'png,jpg'</button>-->
+  <button (click)="OnProfileUpdate()">Submit Details</button>
+  <button (click)="OnProfileCancelUpdate()">Cancel/Back</button>
+</div>
+<button (click)="OnProfileCancelUpdate()">Update Experience</button>
+<button (click)="OnNewProfile()">More Experience</button>
+
+

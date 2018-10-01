@@ -1,4 +1,13 @@
-<h1>
-  {{title}}
-</h1>
-<button (click)="downloadPDF()">PDF</button>
+<div class="col-header"><app-header></app-header></div>
+
+<div class='container-fluid'>
+  <div class='column-layout'>
+    <div class='col-menu'>
+      <app-navmenu></app-navmenu>
+     
+    </div>
+    <div class='col-content'>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
